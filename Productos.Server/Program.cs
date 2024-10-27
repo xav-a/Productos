@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Productos.Server.Entity;
+
 namespace Productos.Server
 {
     public class Program
@@ -13,6 +16,9 @@ namespace Productos.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<ApplicationDbContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
+            );
 
             var app = builder.Build();
 
